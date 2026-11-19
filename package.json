@@ -14,6 +14,11 @@
     "dev:api": "npm run dev -w @mnemo/api",
     "build": "npm run build -w @mnemo/web && npm run build -w @mnemo/api",
     "test": "npm test --workspaces --if-present",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "format": "prettier . --write",
+    "format:check": "prettier . --check"
+  },
+  "devDependencies": {
+    "prettier": "^3.10.1"
   }
 }
