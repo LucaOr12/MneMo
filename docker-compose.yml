@@ -1,0 +1,30 @@
+services:
+  db:
+    # Allinea la versione maggiore a quella del tuo progetto Supabase
+    # (dashboard → Settings → Infrastructure). Evita sorprese di sintassi o
+    # funzioni tra locale e produzione.
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      # Credenziali SOLO per lo sviluppo locale: il database è raggiungibile
+      # esclusivamente dalla tua macchina (vedi `ports`), quindi non sono segreti reali.
+      POSTGRES_USER: mnemo
+      POSTGRES_PASSWORD: mnemo
+      POSTGRES_DB: mnemo
+    ports:
+      # Legato a 127.0.0.1: senza, Docker espone la porta anche sulla rete locale
+      # con una password debole.
+      - "127.0.0.1:5432:5432"
+    volumes:
+      # Volume con nome: i dati sopravvivono a `docker compose down`.
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      # Permette di capire quando Postgres accetta davvero connessioni
+      # (il container può essere "up" ma ancora in inizializzazione).
+      test: ["CMD-SHELL", "pg_isready -U mnemo -d mnemo"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+volumes:
+  pgdata:
