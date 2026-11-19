@@ -1,0 +1,12 @@
+{
+  "name": "mnemo",
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "start:web": "npm start -w @mnemo/web",
+    "start:api": "npm start -w @mnemo/api"
+  }
+}
