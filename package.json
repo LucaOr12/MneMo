@@ -1,12 +1,19 @@
 {
   "name": "mnemo",
   "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=24"
+  },
   "workspaces": [
     "apps/*",
     "packages/*"
   ],
   "scripts": {
-    "start:web": "npm start -w @mnemo/web",
-    "start:api": "npm start -w @mnemo/api"
+    "dev:web": "npm run dev -w @mnemo/web",
+    "dev:api": "npm run dev -w @mnemo/api",
+    "build": "npm run build -w @mnemo/web && npm run build -w @mnemo/api",
+    "test": "npm test --workspaces --if-present",
+    "lint": "eslint ."
   }
 }

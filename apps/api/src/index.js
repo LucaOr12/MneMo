@@ -1,8 +1,6 @@
-import { APP_NAME, createCard } from "@mnemo/shared";
+import { createApp } from './app.js';
+import { config } from './config/env.js';
 
-const card = createCard({
-  front: "workspace",
-  back: "npm workspaces",
+createApp().listen(config.port, () => {
+  console.log(`Server is running on port ${config.port}`);
 });
-
-console.log(`${APP_NAME} api`, card.front);

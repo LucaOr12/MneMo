@@ -4,9 +4,11 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "dev": "node --watch src/index.js",
     "start": "node src/index.js"
   },
   "dependencies": {
-    "@mnemo/shared": "*"
+    "@mnemo/shared": "*",
+    "express": "^5.3.0"
   }
 }
